@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Pettamo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web app for online vet consultations & verified pet care services to better care for your pets :dog::cat:
 
-## Available Scripts
+<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/readme/readme/image.png" alt="image" />
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This project is submitted for Innovaccer hackerCamp'22 Hackathon. Link to [**Live Demo**](https://pettamo.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+My humble and super bare minimum MVP is using the Netlify's functions (serverless) feature to talk to the API layer of the AstraDB - to save lots of time doing laborious backend plumbing work. For the API layer, I've chosen the Stargate document API to interact with AstraDB's Cassandra database since i came from MongoDB realm. Furthermore, I've only used a single collection to bring up the MVP fast - a tradeoff that enabled me to present the video demo of the working product on time.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Architecture 
 
-### `npm test`
+<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/readme/readme/solution-architecture.png" alt="solution-architecture" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started Locally
 
-### `npm run build`
+```shell
+# Get the latest snapshot
+git clone https://github.com/Nitheeshskumar/pettamo-innovaccer.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Change directory
+cd pettamo-innovaccer
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install NPM dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Add your Astra DB configs
+Create a .env file in the project root folder and your Astra DB variables
 
-### `npm run eject`
+# Then simply start your app
+npm run dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Name                               | Description                                                  |
+| ---------------------------------- | ------------------------------------------------------------ |
+| **functions**/                     | user account management                                      |
+| **functions**/**utils**            | config astra client                                          |
+| **public**/                        | static files                                                 |
+| **src**/index.js                   | entrypoint                                                   |
+| **src**/**Assets**                 | static assets                                                |
+| **src**/**Components**             | components used in the app                                   |
+| **src**/**ContextStore**           | global data                                                  |
+| **src**/**Modules**                | sub-components used in page cntainers                        |
+| **src**/**Routes**                 | js handling routes and guarding unauthorized req             |
+| **src**/**Services**               | axios config and handling                                    |
+| **src**/**Utils**                  | some utility functions                                       |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Database design
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The backend codes are written in **functions/** folder
 
-## Learn More
+* Leveraged the design of Astra DB for more modern architectures, such as cloud, where we need to scale out, reach a global audience
+* Maintain sovereignty within a single cluster
+* Since we used NoSql,it excels at handling large datasets
+* Required less upfront design.
+* Nodejs integration was done through the astrajs client which makes it super easy for node developers
+* Integration with Document API also helps node devs for their conventional querying operations
+* Multi tenancy approach is made possible with the collections within the same database itself. Hence if i need to add more projects on top of the same data, its super easy to partition and still integrate them
+* For complex queries a relational model is acheived using 2 keys . `rel_type and rel_id`
+  * Entities are appointments, pet owner, service provider, pets . This is linked to the rel_type key.
+  * rel_type links to the corresponding user. for eg: the rel_id of a pet will be its owners uuid. 
+  * This data model acheived full scalability still having a relation to perform some of the comple queries without having to add multiple tables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/main/readme/schema.png" alt="schema" />
 
-### Code Splitting
+### Credits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* The project is modified from [huksley/todo-react-ssr-serverless](https://github.com/huksley/todo-react-ssr-serverless)
