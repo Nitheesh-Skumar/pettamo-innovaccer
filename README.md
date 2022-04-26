@@ -2,17 +2,17 @@
 
 A web app for online vet consultations & verified pet care services to better care for your pets :dog::cat:
 
-<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/readme/readme/image.png" alt="image" />
+<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/main/readme/image.png" alt="image" />
 
 ## Overview
 
-This project is submitted for Innovaccer hackerCamp'22 Hackathon. Link to [**Live Demo**](https://pettamo.netlify.app/)
+This project is submitted for Developer week Europe hackathon. Link to [**Live Demo**](https://pettamo.netlify.app/)
 
 My humble and super bare minimum MVP is using the Netlify's functions (serverless) feature to talk to the API layer of the AstraDB - to save lots of time doing laborious backend plumbing work. For the API layer, I've chosen the Stargate document API to interact with AstraDB's Cassandra database since i came from MongoDB realm. Furthermore, I've only used a single collection to bring up the MVP fast - a tradeoff that enabled me to present the video demo of the working product on time.
 
 ### Architecture 
 
-<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/readme/readme/solution-architecture.png" alt="solution-architecture" />
+<img src="https://github.com/Nitheeshskumar/pettamo-innovaccer/blob/main/readme/solution-architecture.png" alt="solution-architecture" />
 
 ## Getting Started Locally
 
