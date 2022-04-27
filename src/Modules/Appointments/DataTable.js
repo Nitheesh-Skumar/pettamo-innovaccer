@@ -22,7 +22,6 @@ function ListContainer(props) {
       setFilter( e.target.value);
       props.loadApointments({serviceType:e.target.value})
   };
-  console.log(filter)
   // sort on list item header label click
   const handleSort = (e) => {
     let sortedTodos;
@@ -146,7 +145,7 @@ function ListContainer(props) {
           <tbody>
 
             {props.appointMentsList.map((el) =>
-              filter.isMedical === "1" ? <tr></tr> : <ItemRow el={el} key={el.id} />
+              filter.isMedical === "1" ? <tr></tr> : <ItemRow el={el} key={el.id} filter={filter}/>
             )}
           </tbody>
         </table>

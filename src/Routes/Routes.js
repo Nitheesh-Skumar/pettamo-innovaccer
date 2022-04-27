@@ -9,6 +9,7 @@ const ServiceProviderContainer = React.lazy(()=>import('../Modules/ServiceProvid
 const ProviderDetail = React.lazy(()=>import('../Modules/ServiceProvider/ServiceProviderDetail'))
 const Admin = React.lazy(()=>import('../Modules/Admin'))
 const Appointments = React.lazy(()=>import('../Modules/Appointments/Appointments'))
+const VideoCall = React.lazy(()=>import('../Modules/Appointments/VideoCall'))
 const Profile = React.lazy(()=>import('../Modules/Profile/Profile'))
 const Pets = React.lazy(()=>import('../Modules/Pets/PetsContainer'))
 const CreateService = React.lazy(()=>import('../Modules/ServiceProvider/CreateServiceProvider'))
@@ -37,6 +38,7 @@ const RootRoutes = () => (
                 <RouteGuard path="/pets" xComponent={Pets} />
                 <RouteGuard path="/admin" xComponent={Admin} />
                 <RouteGuard path="/createservice" xComponent={CreateService} />
+                <RouteGuard path="/videocall" xComponent={VideoCall} />
                 <Redirect from="*" to="/dashboard" push />
                 </Switch>
           </React.Suspense>
